@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">IntelligentStudying</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="context_menu">Context menu</string>
+    <string-array name="select_team_or_person">
+        <item>小组</item>
+        <item>个人</item>
+    </string-array>
+    <string-array name="select_person_sort">
+        <item>奇数</item>
+        <item>偶数</item>
+        <item>所有</item>
+        <item>男生</item>
+        <item>女生</item>
+    </string-array>
+</resources>

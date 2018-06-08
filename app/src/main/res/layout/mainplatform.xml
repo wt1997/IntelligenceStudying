@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/toolbar" />
+   <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager_one"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </android.support.v4.view.ViewPager>
+    <fragment
+        android:id="@+id/zero_fm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        class="com.example.wt.intelligentstudying.MenuFragment"/>
+    <com.ashokvarma.bottomnavigation.BottomNavigationBar
+        android:id="@+id/bottomNavigationBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+    </com.ashokvarma.bottomnavigation.BottomNavigationBar>
+</LinearLayout>

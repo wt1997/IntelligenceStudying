@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="text_color">#222222</color>
+    <color name="black">#000000</color>
+    <color name="gray">#757E7E</color>
+    <color name="less_light_gray">#344747</color>
+    <!-- 描边颜色 -->
+    <color name="border_clo">#ccc</color>
+    <color name="text_clo">#333</color>
+    <color name="white">#fff</color>
+    <color name="blue">#419DE4</color>
+    <color name="light_gray">#CCCCCC</color>
+    <color name="AndroidWhite">#E9E6E6</color>
+    <color name="light_blue">#44D5D3</color>
+    <color name="gray_1">#6E7778</color>
+    <color name="touming">#00000000</color>
+    <color name="chengse">#E6822E</color>
+    <color name="red_orange">#E5470c</color>
+</resources>

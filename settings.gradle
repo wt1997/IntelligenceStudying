@@ -1,0 +1,4 @@
+include ':app',
+        ':menulib', ':squaremenus'
+
+project(':squaremenus').projectDir = new File('squaremenu')

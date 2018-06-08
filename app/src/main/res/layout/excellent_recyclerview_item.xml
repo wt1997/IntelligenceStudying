@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/AndroidWhite"
+    android:padding="2dp"
+    android:layout_marginBottom="6dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/excellent_page"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/excellent_recyclerview_item_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/bf"/>
+        <TextView
+            android:id="@+id/excellent_recyclerview_item_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/excellent_recyclerview_item_image"
+            android:textSize="18sp"
+            android:maxLines="7"
+            android:ellipsize="end"
+            android:textColor="@color/gray"
+            android:text="这是什么，android:layout_width=match_parentandroid:orientation=vertical这是什么，android:layout_width=match_parentandroid:orientation=vertical这是什么，android:layout_width=match_parentandroid:orientation=vertical"/>
+        <TextView
+            android:id="@+id/excellent_recyclerview_item_author"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/excellent_recyclerview_item_image"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/blue"
+            android:paddingTop="10dp"
+            android:paddingLeft="5dp"
+            android:text="author: Monkey"/>
+        <com.devs.squaremenu.SquareMenu
+            app:squareFabSize="42"
+            android:id="@+id/sm"
+            app:fabColor="@color/white"
+            app:iconM1="@drawable/delete_36"
+            app:iconM2="@drawable/like_36"
+            app:iconM3="@drawable/diss_36"
+            app:menuOpenDirection="top_left"
+            android:layout_width="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+</LinearLayout>

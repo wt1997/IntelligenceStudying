@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/AndroidWhite"
+    android:orientation="vertical">
+    <include
+        layout="@layout/stu_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        style="@style/stu_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout style="@style/top_layout">
+            <TextView
+                style="@style/text_layout"
+                android:text="消息通知"/>
+            <ImageView
+                style="@style/imge_layout" />
+        </LinearLayout>
+        <View style="@style/line_layout"/>
+        <LinearLayout style="@style/mid_layout">
+            <TextView
+                style="@style/text_layout"
+                android:text="我的课程"/>
+            <ImageView
+                style="@style/imge_layout" />
+        </LinearLayout>
+        <View style="@style/line_layout"/>
+        <LinearLayout style="@style/mid_layout">
+            <TextView
+                style="@style/text_layout"
+                android:text="学习小组"/>
+            <ImageView
+                style="@style/imge_layout" />
+        </LinearLayout>
+        <View style="@style/line_layout"/>
+        <LinearLayout style="@style/bottom_layout">
+            <TextView
+                style="@style/text_layout"
+                android:text="我的作业"/>
+            <ImageView
+                style="@style/imge_layout" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/stu_info">
+        <LinearLayout style="@style/single_layout">
+            <TextView
+                style="@style/text_layout"
+                android:text="设置"/>
+            <ImageView
+                style="@style/imge_layout" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
