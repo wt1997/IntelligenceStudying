@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/answer_dialog_et"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/course_home_edit"
+        android:hint="......"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:gravity="top"
+        android:textColorHint="@color/light_gray"/>
+
+</LinearLayout>

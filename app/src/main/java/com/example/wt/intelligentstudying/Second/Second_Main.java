@@ -1,19 +1,25 @@
 package com.example.wt.intelligentstudying.Second;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,11 +42,16 @@ import com.example.wt.intelligentstudying.StuInfo.TaskFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Second_Main extends AppCompatActivity implements OnMenuItemClickListener, OnMenuItemLongClickListener{
+public class Second_Main extends AppCompatActivity implements OnMenuItemClickListener,
+        OnMenuItemLongClickListener,contents{
     private FrameLayout frameLayout;
     private List<Fragment> fragmentList = new ArrayList<>();
     private FragmentManager fragmentManager;
     private ContextMenuDialogFragment mMenuDialogFragment;
+    private static List<String> mtitle = new ArrayList<>();
+    private static List<String> mcontent = new ArrayList<>();
+    private static String mtitles;
+    private static String mcontents;
     @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -51,8 +62,7 @@ public class Second_Main extends AppCompatActivity implements OnMenuItemClickLis
         initListFragment(fragmentList);
         fragmentManager = getSupportFragmentManager();
         initToolbar();
-        initMenuFragment();
-       // addFragment(new MenuFragment(), false, R.id.second_main_zero_fm);
+        initMenuFragment(0);
         replaceFragment(number);
     }
 
@@ -75,10 +85,10 @@ public class Second_Main extends AppCompatActivity implements OnMenuItemClickLis
         listfragment.add(new Content());
     }
     //初始化菜单栏Fragment
-    private void initMenuFragment() {
+    private void initMenuFragment(int position) {
         MenuParams menuParams = new MenuParams();
         menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.tool_bar_height));
-        menuParams.setMenuObjects(getMenuObjects());
+        menuParams.setMenuObjects(getMenuObjects(position));
         menuParams.setClosableOutside(false);
         mMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
         mMenuDialogFragment.setItemClickListener(this);
@@ -136,20 +146,6 @@ public class Second_Main extends AppCompatActivity implements OnMenuItemClickLis
         });
         mToolBarTextView.setText("AL");
     }
-    //添加Fragment,此处设置Fragment的大小为0
-    /*protected void addFragment(Fragment fragment, boolean addToBackStack, int containerId) {
-        invalidateOptionsMenu();
-        String backStackName = fragment.getClass().getName();
-        boolean fragmentPopped = fragmentManager.popBackStackImmediate(backStackName, 0);
-        if (!fragmentPopped) {
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.add(containerId, fragment, backStackName)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            if (addToBackStack)
-                transaction.addToBackStack(backStackName);
-            transaction.commit();
-        }
-    }*/
     //在标题栏添加选项栏
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
@@ -181,7 +177,41 @@ public class Second_Main extends AppCompatActivity implements OnMenuItemClickLis
     //ToolBar菜单栏监听器
     @Override
     public void onMenuItemClick(View clickedView, int position) {
-        Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
+        View view = LayoutInflater.from(this).inflate(R.layout.answer_dialog,null,false);
+        EditText editText = view.findViewById(R.id.answer_dialog_et);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("评论");
+        alertDialog.setView(view);
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "发表", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialog.show();
+        //Toast.makeText(this, "Clicked on position: " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -192,7 +222,68 @@ public class Second_Main extends AppCompatActivity implements OnMenuItemClickLis
     public void onBlockItemClick(View view){
         RecyclerView recyclerView = getSupportFragmentManager().findFragmentById(R.id.second_main_fm)
                 .getView().findViewById(R.id.fm_block_recyclerview);
+        //获取点击的item项
         int childAdapterPosition = recyclerView.getChildAdapterPosition(view);
+        //获取点击项的Title和Content
+        mtitles = mtitle.get(childAdapterPosition);
+        mcontents = mcontent.get(childAdapterPosition);
+        initMenuFragment(1);
         replaceFragment(fragmentList.size()-1);
+    }
+    //实现自定义接口contents
+    //在BlockFragment中调用setContents,将数据传递到Activity
+    public void setContents(List<String> title,List<String> content){
+        mtitle = title;
+        mcontent = content;
+    }
+    //在ContentFragment中调用getContent,获取Question数据
+    public String getContent(){
+        return mcontents;
+    }
+    //在ContentFragment中调用获取Question标题
+    public String getmTitle(){
+        return mtitles;
+    }
+    /*----------接下来的代码是对选择条的选择,在开启不同的Fragment时显示不同的选择条------------------*/
+    //将菜单栏图片装入List中
+    private List<MenuObject> getMenuObjects(int which) {
+        List<MenuObject> menuObjects = new ArrayList<>();
+        MenuObject close = new MenuObject();
+        close.setResource(R.drawable.icn_close);
+
+        MenuObject send = new MenuObject("Send message");
+        send.setResource(R.drawable.icn_1);
+
+        MenuObject like = new MenuObject("Like profile");
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.icn_2);
+        like.setBitmap(b);
+
+        MenuObject addFr = new MenuObject("Add to friends");
+        BitmapDrawable bd = new BitmapDrawable(getResources(),
+                BitmapFactory.decodeResource(getResources(), R.drawable.icn_3));
+        addFr.setDrawable(bd);
+
+        MenuObject addFav = new MenuObject("Add to favorites");
+        addFav.setResource(R.drawable.icn_4);
+
+        MenuObject block = new MenuObject("Block user");
+        block.setResource(R.drawable.icn_5);
+
+        switch (which){
+            case 0:
+                menuObjects.add(close);
+                menuObjects.add(send);
+                menuObjects.add(like);
+                menuObjects.add(addFr);
+                menuObjects.add(addFav);
+                menuObjects.add(block);
+                break;
+            case 1:
+                menuObjects.add(close);
+                menuObjects.add(send);
+                menuObjects.add(like);
+                break;
+        }
+        return menuObjects;
     }
 }

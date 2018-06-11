@@ -3,8 +3,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".DocFragment.Content">
-
-
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/AndroidWhite"/>
+    <TextView
+        android:id="@+id/fm_content_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="Title"
+        android:textSize="20sp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:id="@+id/fm_content_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contents"
+            android:textColor="@color/gray"
+            android:textSize="17sp"
+            android:lineSpacingMultiplier="1.5" />
+    </ScrollView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="———— 评论 ————"
+        android:textSize="18sp"
+        android:textColor="@color/gray"
+        android:layout_marginBottom="5dp"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fm_content_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>

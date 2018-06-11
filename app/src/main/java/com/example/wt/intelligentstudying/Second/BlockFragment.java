@@ -23,6 +23,8 @@ public class BlockFragment extends Fragment {
 
     List<Quenstion> quenstionList = new ArrayList<>();
     RecyclerView recyclerView;
+    List<String> title = new ArrayList<>();
+    List<String> content = new ArrayList<>();
 
     public BlockFragment() {
         // Required empty public constructor
@@ -44,6 +46,11 @@ public class BlockFragment extends Fragment {
         QuestionsAdapter questionsAdapter = new QuestionsAdapter(quenstionList);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(questionsAdapter);
+        for(int i=0;i<quenstionList.size();i++){
+            title.add(quenstionList.get(i).getTitle());
+            content.add(quenstionList.get(i).getContents());
+        }
+        ((contents)getActivity()).setContents(title,content);
     }
     //Block版块Item的点击事件
     public void onBlockItemClick(View view){
